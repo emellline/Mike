@@ -1,0 +1,82 @@
+	<html>
+	<head>
+		<title>Affichage de tableau Cours AJAX</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<h1>Affichage de tableau avec html et ajax</h1>
+		</head>
+	<body>
+	<div>
+	<table id= "table">
+	</table>
+		
+	</div>
+
+	
+	<script>
+
+	$(function() { // document ready en Jquery
+		
+	
+	// Requete ajax : envoi des informations 
+			// vers une autre page DE TRAITEMENT
+		var request = $.ajax({
+			url: "http://jsonplaceholder.typicode.com/users",
+			method: "GET", 
+		})
+
+		request.done(function(mike) {
+			var table = "<tr>";
+			$.each(mike[0], function(index, value){
+				if (index == "name" || index == "username" || index == "email" || index == "phone" || index == "company") {
+				table += "<th>";
+				table += index;
+				table += "</th>";
+
+				}		
+			});
+
+		table +=  "</tr>";
+
+		for (var i = 0; i < mike.length; i++) {
+
+			table += "<tr>";
+
+			$.each(mike[i], function(index, value) {
+				table += "<td>";
+				 if (index == "company") {
+					table += value.name;
+				}
+
+				else {
+						table += value;
+				}
+				
+				table += "</td>";
+
+			});
+
+			table += "</tr>";
+
+		};
+
+		table += "</tr>";
+
+		$("#table").html(table);
+
+	});
+
+		request.fail(function(XPDDR, data) {
+			alert( "Request failed ;");
+		
+
+		});
+
+
+	});
+
+	
+
+	</script>
+	</body>
+	</html>	
+
