@@ -1,0 +1,59 @@
+
+	<html>
+	<head>
+		<title>AJAX</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		</head>
+	<body>
+	<div id="mike">
+		<form>
+			<fieldset>
+				<legend>Requete</legend>
+				<textarea rows="4" cols="50" name="sql" id="sql">Select * FROM utilisateurs</textarea>
+				</br>
+				<input type="submit" value="Envoyer">
+			</fieldset>
+		</form>
+	</div>
+	<script> 
+	$ (function(){
+		$("input") .click(function(e) {
+
+			// Annulation de l'actualisation de la page
+			e.preventDefault();
+
+
+			// Console du prénom Mike
+			console.log("mike")
+
+			//Recuperation de la valeur de notre textarea
+			var myRequest = $("#sql").val();
+
+			// Requete ajax : envoi des informations 
+			// vers une autre page DE TRAITEMENT
+			var request = $.ajax({
+		  	url: "read2.php", // page de la requete
+		 	 method: "POST", // Methode de la requete
+		 	 data: {requet : myRequest} // Data envoyer à la page
+
+			});
+		 
+			request.done(function( msg ) {
+		  	$( "#mike" ).html( msg );
+		  	$( "#requet" ).html( myRequest );
+
+			});
+		 
+			request.fail(function( jqXHR, textStatus ) {
+		 	 alert( "Request failed: " + textStatus );
+
+			});
+		});
+	})
+
+	
+
+
+	</script>
+	</body>
+	</html>	
