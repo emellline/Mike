@@ -1,0 +1,24 @@
+http://jsonplaceholder.typicode.com/posts
+
+
+Doit générer un tableau avec tous les commentaires liés aux posts
+Routes
+
+All HTTP verbs are supported.
+View usage examples.
+
+GET	/posts
+GET	/posts/1
+GET	/posts/1/comments
+GET	/comments?postId=1
+GET	/posts?userId=1
+POST	/posts
+PUT	/posts/1
+PATCH	/posts/1
+DELETE	/posts/1
+Use your OWN data
+
+JSON Server powers this website. You can use it to create the same fake API in less than 30 seconds with your own data.
+
+npm install -g json-server
+
